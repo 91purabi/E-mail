@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email App</title>
+    <style>
+        /* Common styles */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .email-app {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .inbox {
+            border: 1px solid #ccc;
+            padding: 10px;
+            min-height: 300px;
+        }
+        .email-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+        .email-item:hover {
+            background-color: #f0f0f0;
+        }
+        .email-content {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 600px) {
+            .email-app {
+                padding: 10px;
+            }
+            .inbox {
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-app">
+        <h1>Email App</h1>
+        <div class="inbox">
+            <!-- Email List -->
+            <div class="email-item" onclick="openEmail(1)">
+                <strong>Sender 1:</strong> Subject 1
+            </div>
+            <div class="email-item" onclick="openEmail(2)">
+                <strong>Sender 2:</strong> Subject 2
+            </div>
+            <!-- Add more emails here -->
+
+            <!-- Email Content -->
+            <div class="email-content" id="email-content">
+                Select an email to read.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample email data (you would typically fetch this from a server)
+        const emails = {
+            1: {
+                sender: 'Sender 1',
+                subject: 'Subject 1',
+                content: 'Email content 1...',
+            },
+            2: {
+                sender: 'Sender 2',
+                subject: 'Subject 2',
+                content: 'Email content 2...',
+            },
+            // Add more emails here
+        };
+
+        // Function to open and display an email
+        function openEmail(emailId) {
+            const emailContent = document.getElementById('email-content');
+            const email = emails[emailId];
+
+            if (email) {
+                emailContent.innerHTML = `
+                    <h2>${email.subject}</h2>
+                    <p><strong>From:</strong> ${email.sender}</p>
+                    <p>${email.content}</p>
+                `;
+            } else {
+                emailContent.innerHTML = 'Email not found.';
+            }
+        }
+    </script>
+</body>
+</html>
